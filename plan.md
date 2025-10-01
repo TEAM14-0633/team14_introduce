@@ -1,5 +1,5 @@
 # PERT/CPM 圖
-![PERT/CPM 圖](圖片URL)
+![PERT/CPM 圖](PERT.png)
 # 甘特圖
 ``` mermaid
 gantt
