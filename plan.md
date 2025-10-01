@@ -22,8 +22,8 @@ gantt
     title 書途同歸-高科二手書整合系統
     dateFormat  YYYY-MM-DD
     section 分析與設計
-    需求分析與規劃          :done, task1, 2025-10-01, 2025-10-02
-    設計系統架構            :done, task2, 2025-10-03, 2025-10-06
+    需求分析與規劃          :active, task1, 2025-10-01, 2025-10-02
+    設計系統架構            :active, task2, 2025-10-03, 2025-10-06
 
     section 資料庫與前端
     資料庫設計              :active, task3, 2025-10-07, 2025-10-13
