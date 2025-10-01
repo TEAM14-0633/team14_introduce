@@ -19,7 +19,7 @@
 # 甘特圖
 ``` mermaid
 gantt
-    title 專案甘特圖
+    title 書途同歸-高科二手書整合系統
     dateFormat  YYYY-MM-DD
     section 分析與設計
     需求分析與規劃          :done, task1, 2025-10-01, 2025-10-02
