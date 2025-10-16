@@ -45,8 +45,6 @@ graph TD
   A[二手書交易平台] --> B[用戶註冊與安全]
   A --> C[書籍管理]
   A --> D[書籍搜尋與瀏覽]
-  A --> E[互動與通知]
-  A --> F[聊天室]
   
   %% 用戶註冊與安全
   B --> B1[用戶註冊]
@@ -66,6 +64,22 @@ graph TD
   D --> D3[詳情查看]
   
   
+  
+  %% 樣式設定
+  classDef mainFunction fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+  classDef subFunction fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+  classDef detailFunction fill:#e8f5e8,stroke:#1b5e20,stroke-width:1px
+  
+  class A mainFunction
+  class B,C,D subFunction
+  class B1,B2,B3,C1,C2,C3,D1,D2,D3 detailFunction
+```
+
+```mermaid
+graph TD
+  A[二手書交易平台] --> E[互動與通知]
+  A --> F[聊天室]
+
   %% 互動與通知
   E --> E1[降價通知]
   E --> E2[收藏功能]
@@ -74,17 +88,249 @@ graph TD
   %% 聊天室
   F --> F1[文字溝通]
   F --> F2[圖片分享]
-  
-  
+
   %% 樣式設定
   classDef mainFunction fill:#e1f5fe,stroke:#01579b,stroke-width:3px
   classDef subFunction fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
   classDef detailFunction fill:#e8f5e8,stroke:#1b5e20,stroke-width:1px
   
   class A mainFunction
-  class B,C,D,E,F subFunction
-  class B1,B2,B3,C1,C2,C3,D1,D2,D3,E1,E2,F1,F2 detailFunction
-```
+  class E,F subFunction
+  class E1,E2,F1,F2 detailFunction
+```  
+
 # 使用案例圖
+### 1. 用戶註冊與安全
+```mermaid
+flowchart TD
+    %% 參與者
+    Student[高科大學生]
+    System[系統]
+    EmailServer[電子郵件伺服器]
+    
+    %% 使用案例
+    UC1((用戶註冊))
+    UC2((電子郵件驗證))
+    UC3((忘記密碼))
+    UC4((重設密碼))
+    UC5((登入系統))
+    
+    %% 關聯
+    Student --> UC1
+    Student --> UC3
+    Student --> UC5
+    
+    UC1 --> System
+    UC2 --> System
+    UC3 --> System
+    UC4 --> System
+    UC5 --> System
+    
+    UC2 --> EmailServer
+    UC4 --> EmailServer
+    
+    %% 包含關係
+    UC1 -.->|<<include>>| UC2
+    UC3 -.->|<<include>>| UC4
+    
+    %% 樣式
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class Student actor
+    class UC1,UC2,UC3,UC4,UC5 usecase
+    class System,EmailServer system
+```
+
+### 2. 書籍刊登/編輯/刪除
+```mermaid
+flowchart TD
+    %% 參與者
+    Seller[賣家]
+    OCRService[OCR服務]
+    Database[資料庫]
+    
+    %% 使用案例
+    UC1((OCR快速刊登))
+    UC2((手動輸入書籍資訊))
+    UC3((編輯書籍資訊))
+    UC4((設定售價與狀態))
+    UC5((上傳書籍圖片))
+    UC6((刪除書籍))
+    UC7((管理書籍清單))
+    
+    %% 關聯
+    Seller --> UC1
+    Seller --> UC2
+    Seller --> UC3
+    Seller --> UC4
+    Seller --> UC5
+    Seller --> UC6
+    Seller --> UC7
+    
+    UC1 --> OCRService
+    UC1 --> Database
+    UC2 --> Database
+    UC3 --> Database
+    UC4 --> Database
+    UC5 --> Database
+    UC6 --> Database
+    UC7 --> Database
+    
+    %% 擴展關係
+    UC1 -.->|<<extend>>| UC2
+    UC3 -.->|<<include>>| UC4
+    UC3 -.->|<<include>>| UC5
+    
+    %% 樣式
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class Seller actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7 usecase
+    class OCRService,Database system
+```
+
+### 3. 書籍搜尋與瀏覽資訊
+```mermaid
+flowchart TD
+    %% 參與者
+    Buyer[買家]
+    SearchEngine[搜尋引擎]
+    Database[資料庫]
+    
+    %% 使用案例
+    UC1((關鍵字搜尋))
+    UC2((多維度篩選))
+    UC3((瀏覽書籍清單))
+    UC4((查看書籍詳情))
+    UC5((查看書籍圖片))
+    UC6((科系篩選))
+    UC7((時間排序))
+    UC8((價格排序))
+    
+    %% 關聯
+    Buyer --> UC1
+    Buyer --> UC2
+    Buyer --> UC3
+    Buyer --> UC4
+    
+    UC1 --> SearchEngine
+    UC2 --> SearchEngine
+    UC3 --> Database
+    UC4 --> Database
+    UC5 --> Database
+    
+    %% 包含和擴展關係
+    UC2 -.->|<<include>>| UC6
+    UC2 -.->|<<include>>| UC7
+    UC2 -.->|<<include>>| UC8
+    UC4 -.->|<<include>>| UC5
+    
+    %% 樣式
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class Buyer actor
+    class UC1,UC2,UC3,UC4,UC5,UC6,UC7,UC8 usecase
+    class SearchEngine,Database system
+```
+
+### 4. 互動與通知
+```mermaid
+flowchart TD
+    %% 參與者
+    Buyer[買家]
+    NotificationSystem[通知系統]
+    Database[資料庫]
+    
+    %% 使用案例
+    UC1((設定降價通知))
+    UC2((接收降價提醒))
+    UC3((加入收藏清單))
+    UC4((管理收藏清單))
+    UC5((移除收藏))
+    UC6((查看通知歷史))
+    
+    %% 關聯
+    Buyer --> UC1
+    Buyer --> UC2
+    Buyer --> UC3
+    Buyer --> UC4
+    Buyer --> UC5
+    Buyer --> UC6
+    
+    UC1 --> Database
+    UC2 --> NotificationSystem
+    UC3 --> Database
+    UC4 --> Database
+    UC5 --> Database
+    UC6 --> Database
+    
+    %% 包含關係
+    UC1 -.->|<<trigger>>| UC2
+    UC4 -.->|<<include>>| UC5
+    
+    %% 樣式
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class Buyer actor
+    class UC1,UC2,UC3,UC4,UC5,UC6 usecase
+    class NotificationSystem,Database system
+```
+
+### 5. 聊天室
+```mermaid
+flowchart TD
+    %% 參與者
+    Buyer[買家]
+    Seller[賣家]
+    ChatServer[聊天伺服器]
+    FileServer[檔案伺服器]
+    
+    %% 使用案例
+    UC1((發送文字訊息))
+    UC2((接收文字訊息))
+    UC3((上傳圖片))
+    UC4((接收圖片))
+    UC5((查看聊天記錄))
+    UC6((建立聊天室))
+    
+    %% 關聯
+    Buyer --> UC1
+    Buyer --> UC2
+    Buyer --> UC3
+    Buyer --> UC4
+    Buyer --> UC5
+    Buyer --> UC6
+    
+    Seller --> UC1
+    Seller --> UC2
+    Seller --> UC3
+    Seller --> UC4
+    Seller --> UC5
+    
+    UC1 --> ChatServer
+    UC2 --> ChatServer
+    UC3 --> FileServer
+    UC4 --> FileServer
+    UC5 --> ChatServer
+    UC6 --> ChatServer
+    
+    %% 樣式
+    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
+    
+    class Buyer,Seller actor
+    class UC1,UC2,UC3,UC4,UC5,UC6 usecase
+    class ChatServer,FileServer system
+```
+
 
 # 使用案例說明
