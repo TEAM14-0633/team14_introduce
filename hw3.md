@@ -165,74 +165,8 @@ flowchart TD
 ```
 
 ### 2. 書籍刊登/編輯/刪除
-```mermaid
-flowchart TD
-    subgraph 書籍管理系統
-        UC1(["OCR 快速刊登"])
-        UC2(["手動輸入 / 編輯書籍資訊"])
-        UC3(["設定售價與狀態"])
-        UC4(["上傳書籍圖片"])
-        UC5(["刪除書籍"])
-    end
 
-    賣家((賣家)) --> UC1
-    賣家 --> UC2
-    賣家 --> UC3
-    賣家 --> UC4
-    賣家 --> UC5
-    UC1 --> UC2
-
-```
-
-
-```mermaid
-flowchart TD
-    %% 參與者
-    Seller[賣家]
-    OCRService[OCR服務]
-    Database[資料庫]
-    
-    %% 使用案例
-    UC1((OCR快速刊登))
-    UC2((手動輸入書籍資訊))
-    UC3((編輯書籍資訊))
-    UC4((設定售價與狀態))
-    UC5((上傳書籍圖片))
-    UC6((刪除書籍))
-    UC7((管理書籍清單))
-    
-    %% 關聯
-    Seller --> UC1
-    Seller --> UC2
-    Seller --> UC3
-    Seller --> UC4
-    Seller --> UC5
-    Seller --> UC6
-    Seller --> UC7
-    
-    UC1 --> OCRService
-    UC1 --> Database
-    UC2 --> Database
-    UC3 --> Database
-    UC4 --> Database
-    UC5 --> Database
-    UC6 --> Database
-    UC7 --> Database
-    
-    %% 擴展關係
-    UC1 -.->|<<extend>>| UC2
-    UC3 -.->|<<include>>| UC4
-    UC3 -.->|<<include>>| UC5
-    
-    %% 樣式
-    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    
-    class Seller actor
-    class UC1,UC2,UC3,UC4,UC5,UC6,UC7 usecase
-    class OCRService,Database system
-```
+![書籍刊登系統使用案例圖](書籍刊登_使用案例.png)
 
 ### 3. 書籍搜尋與瀏覽資訊
 ```mermaid
