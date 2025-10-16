@@ -40,6 +40,51 @@
 
 # 功能分解圖
 
+```mermaid
+graph TD
+  A[二手書交易平台] --> B[用戶註冊與安全]
+  A --> C[書籍管理]
+  A --> D[書籍搜尋與瀏覽]
+  A --> E[互動與通知]
+  A --> F[聊天室]
+  
+  %% 用戶註冊與安全
+  B --> B1[用戶註冊]
+  B --> B2[身份驗證]
+  B --> B3[密碼管理]
+  
+  
+  %% 書籍管理
+  C --> C1[書籍刊登]
+  C --> C2[書籍編輯]
+  C --> C3[書籍刪除]
+  
+  
+  %% 書籍搜尋與瀏覽
+  D --> D1[搜尋功能]
+  D --> D2[篩選功能]
+  D --> D3[詳情查看]
+  
+  
+  %% 互動與通知
+  E --> E1[降價通知]
+  E --> E2[收藏功能]
+  
+  
+  %% 聊天室
+  F --> F1[文字溝通]
+  F --> F2[圖片分享]
+  
+  
+  %% 樣式設定
+  classDef mainFunction fill:#e1f5fe,stroke:#01579b,stroke-width:3px
+  classDef subFunction fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+  classDef detailFunction fill:#e8f5e8,stroke:#1b5e20,stroke-width:1px
+  
+  class A mainFunction
+  class B,C,D,E,F subFunction
+  class B1,B2,B3,C1,C2,C3,D1,D2,D3,E1,E2,F1,F2 detailFunction
+```
 # 使用案例圖
 
 # 使用案例說明
