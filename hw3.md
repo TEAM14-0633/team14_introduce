@@ -292,70 +292,7 @@ flowchart TD
 ```
 
 ### 5. 聊天室
-```mermaid
-flowchart TD
-    subgraph 聊天系統
-        UC1(["發送文字訊息"])
-        UC2(["上傳圖片"])
-        UC3(["接收訊息"])
-    end
 
-    買家((買家)) --> UC1
-    賣家((賣家)) --> UC1
-    買家 --> UC2
-    賣家 --> UC2
-    UC1 --> UC3
-    UC2 --> UC3
-
-```
-
-
-```mermaid
-flowchart TD
-    %% 參與者
-    Buyer[買家]
-    Seller[賣家]
-    ChatServer[聊天伺服器]
-    FileServer[檔案伺服器]
-    
-    %% 使用案例
-    UC1((發送文字訊息))
-    UC2((接收文字訊息))
-    UC3((上傳圖片))
-    UC4((接收圖片))
-    UC5((查看聊天記錄))
-    UC6((建立聊天室))
-    
-    %% 關聯
-    Buyer --> UC1
-    Buyer --> UC2
-    Buyer --> UC3
-    Buyer --> UC4
-    Buyer --> UC5
-    Buyer --> UC6
-    
-    Seller --> UC1
-    Seller --> UC2
-    Seller --> UC3
-    Seller --> UC4
-    Seller --> UC5
-    
-    UC1 --> ChatServer
-    UC2 --> ChatServer
-    UC3 --> FileServer
-    UC4 --> FileServer
-    UC5 --> ChatServer
-    UC6 --> ChatServer
-    
-    %% 樣式
-    classDef actor fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef usecase fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef system fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    
-    class Buyer,Seller actor
-    class UC1,UC2,UC3,UC4,UC5,UC6 usecase
-    class ChatServer,FileServer system
-```
-
+![聊天室系統使用案例](聊天室_使用案例.png)
 
 # 使用案例說明
