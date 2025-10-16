@@ -103,6 +103,27 @@ graph TD
 ### 1. 用戶註冊與安全
 ```mermaid
 flowchart TD
+    subgraph 系統
+        UC1(["註冊帳號"])
+        UC2(["驗證高科大信箱"])
+        UC3(["登入"])
+        UC4(["忘記密碼"])
+        UC5(["重設密碼"])
+    end
+
+    買家((買家)) --> UC1
+    賣家((賣家)) --> UC1
+    UC1 --> UC2
+    買家 --> UC3
+    賣家 --> UC3
+    買家 --> UC4
+    賣家 --> UC4
+    UC4 --> UC5
+
+```
+
+```mermaid
+flowchart TD
     %% 參與者
     Student[高科大學生]
     System[系統]
@@ -144,6 +165,26 @@ flowchart TD
 ```
 
 ### 2. 書籍刊登/編輯/刪除
+```mermaid
+flowchart TD
+    subgraph 書籍管理系統
+        UC1(["OCR 快速刊登"])
+        UC2(["手動輸入 / 編輯書籍資訊"])
+        UC3(["設定售價與狀態"])
+        UC4(["上傳書籍圖片"])
+        UC5(["刪除書籍"])
+    end
+
+    賣家((賣家)) --> UC1
+    賣家 --> UC2
+    賣家 --> UC3
+    賣家 --> UC4
+    賣家 --> UC5
+    UC1 --> UC2
+
+```
+
+
 ```mermaid
 flowchart TD
     %% 參與者
@@ -196,6 +237,24 @@ flowchart TD
 ### 3. 書籍搜尋與瀏覽資訊
 ```mermaid
 flowchart TD
+    subgraph 書籍搜尋系統
+        UC1(["關鍵字搜尋"])
+        UC2(["多維度標籤篩選"])
+        UC3(["查看書籍詳情"])
+        UC4(["瀏覽書籍圖片"])
+    end
+
+    買家((買家)) --> UC1
+    買家 --> UC2
+    買家 --> UC3
+    UC3 --> UC4
+
+
+```
+
+
+```mermaid
+flowchart TD
     %% 參與者
     Buyer[買家]
     SearchEngine[搜尋引擎]
@@ -242,6 +301,20 @@ flowchart TD
 ### 4. 互動與通知
 ```mermaid
 flowchart TD
+    subgraph 通知系統
+        UC1(["設定降價通知"])
+        UC2(["接收降價提醒"])
+        UC3(["加入追蹤 / 收藏"])
+    end
+
+    買家((買家)) --> UC1
+    買家 --> UC3
+    UC1 --> UC2
+
+```
+
+```mermaid
+flowchart TD
     %% 參與者
     Buyer[買家]
     NotificationSystem[通知系統]
@@ -285,6 +358,24 @@ flowchart TD
 ```
 
 ### 5. 聊天室
+```mermaid
+flowchart TD
+    subgraph 聊天系統
+        UC1(["發送文字訊息"])
+        UC2(["上傳圖片"])
+        UC3(["接收訊息"])
+    end
+
+    買家((買家)) --> UC1
+    賣家((賣家)) --> UC1
+    買家 --> UC2
+    賣家 --> UC2
+    UC1 --> UC3
+    UC2 --> UC3
+
+```
+
+
 ```mermaid
 flowchart TD
     %% 參與者
