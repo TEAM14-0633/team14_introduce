@@ -136,5 +136,57 @@ classDiagram
 
 ![用戶註冊_活動圖](用戶註冊_活動圖.png)
 
-## 使用案例二
-## 使用案例三
+## 使用案例二：書籍刊登/編輯/刪除
+
+* ### 循序圖
+```mermaid
+sequenceDiagram
+    participant Seller as 賣家
+    participant System as 系統
+    participant OCR as OCR 模組
+    participant DB as 資料庫
+
+    Seller->>System: 掃描ISBN
+    System->>OCR: 傳送ISBN以辨識書籍資訊
+    OCR-->>System: 回傳書籍資訊
+    alt OCR 辨識成功
+        System-->>Seller: 自動填入書籍資訊
+    else OCR 失敗或資訊不完整
+        System-->>Seller: 顯示手動輸入表單
+        Seller->>System: 手動輸入/編輯書籍資訊
+    end
+    Seller->>System: 設定售價、上架狀態、商品描述
+    Seller->>System: 上傳書籍圖片
+    System->>DB: 儲存書籍與圖片資訊
+    DB-->>System: 儲存成功
+    System-->>Seller: 顯示「上架成功」
+```
+
+## 使用案例三：互動與通知
+
+* ### 循序圖
+```mermaid
+sequenceDiagram
+    participant Buyer as 買家
+    participant System as 系統
+    participant DB as 資料庫
+    participant Notify as 通知服務
+
+    Buyer->>System: 加入追蹤/收藏書籍
+    System->>DB: 更新收藏清單
+    DB-->>System: 更新成功
+
+    Buyer->>System: 設定降價通知條件
+    System->>DB: 儲存通知條件
+    DB-->>System: 儲存成功
+
+    System-->>Buyer: 顯示「通知設定完成」
+
+    Note over System,Notify: 系統定期比對書籍價格
+    System->>DB: 檢查追蹤書籍價格
+    DB-->>System: 回傳最新價格
+    alt 價格低於設定值
+        System->>Notify: 發送降價提醒
+        Notify-->>Buyer: 傳送推播/通知
+    end
+```
