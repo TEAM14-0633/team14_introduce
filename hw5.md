@@ -146,20 +146,32 @@ sequenceDiagram
     participant OCR as OCR 模組
     participant DB as 資料庫
 
-    Seller->>System: 掃描ISBN
-    System->>OCR: 傳送ISBN以辨識書籍資訊
+    Seller->>System: 掃描書籍封面或ISBN
+    activate System
+    System->>OCR: 傳送影像/ISBN以辨識書籍資訊
+    activate OCR
     OCR-->>System: 回傳書籍資訊
+    deactivate OCR
+
     alt OCR 辨識成功
         System-->>Seller: 自動填入書籍資訊
     else OCR 失敗或資訊不完整
         System-->>Seller: 顯示手動輸入表單
+        deactivate System
         Seller->>System: 手動輸入/編輯書籍資訊
+        activate System
     end
+
     Seller->>System: 設定售價、上架狀態、商品描述
+    activate System
     Seller->>System: 上傳書籍圖片
     System->>DB: 儲存書籍與圖片資訊
+    activate DB
     DB-->>System: 儲存成功
+    deactivate DB
+
     System-->>Seller: 顯示「上架成功」
+    deactivate System
 ```
 
 * ### 活動圖
@@ -177,22 +189,36 @@ sequenceDiagram
     participant Notify as 通知服務
 
     Buyer->>System: 加入追蹤/收藏書籍
+    activate System
     System->>DB: 更新收藏清單
+    activate DB
     DB-->>System: 更新成功
+    deactivate DB
+    System-->>Buyer: 顯示「收藏完成」
+    deactivate System
 
     Buyer->>System: 設定降價通知條件
+    activate System
     System->>DB: 儲存通知條件
+    activate DB
     DB-->>System: 儲存成功
-
+    deactivate DB
     System-->>Buyer: 顯示「通知設定完成」
+    deactivate System
 
     Note over System,Notify: 系統定期比對書籍價格
+    activate System
     System->>DB: 檢查追蹤書籍價格
+    activate DB
     DB-->>System: 回傳最新價格
+    deactivate DB
     alt 價格低於設定值
         System->>Notify: 發送降價提醒
+        activate Notify
         Notify-->>Buyer: 傳送推播/通知
+        deactivate Notify
     end
+    deactivate System
 ```
 
 * ### 活動圖
